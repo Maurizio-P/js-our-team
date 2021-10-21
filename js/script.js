@@ -6,8 +6,43 @@
 const btnAdd = document.getElementById("addMemberButton")
 const teamContainer = document.querySelector(".team-container")
 
-const utenti = []
+const utenti = [
+    {
+        name: "Wayne Barnett",
+        role: "Founder & CEO",
+        image: "wayne-barnett-founder-ceo.jpg"
+    },
+    
+    {
+        name: "Angela Caroll",
+        role: "Chief Editor",
+        image: "angela-caroll-chief-editor.jpg"
+    },
+    {
+        name: "Walter Gordon",
+        role: "Office Manager",
+        image: "walter-gordon-office-manager.jpg"
+    },
+    {
+        name: "Angela Lopez",
+        role: "Social Media Manager",
+        image: "angela-lopez-social-media-manager.jpg"
+    },
+    {
+        name: "Scott Estrada",
+        role: "Developer",
+        image: "scott-estrada-developer.jpg"
+    },
+    {
+        name: "Barbara Ramos",
+        role: "Graphic Designer",
+        image: "barbara-ramos-graphic-designer.jpg"
+    },
+]
+   
 console.log(utenti)
+
+arrayStamp()
 
 btnAdd.addEventListener("click", function(){
     const name = document.getElementById("name").value
@@ -18,34 +53,44 @@ btnAdd.addEventListener("click", function(){
     console.log("role: " + role)
     console.log("image: " + image)
 
-    // utenti.push(name.value)
-    // console.log("riga 21" + name.value)
-
-
-    utenti.push({
-        nome: name,
-        ruolo: role,
-        img: image
-    })
+    const utente = {
+        name: name,
+        role: role,
+        image: image
+    }
+    utenti.push(utente)
     console.log(utenti)
 
-    cardStamp(name, role, image)
+    cardStamp(utente)
 
 
 })
 
-function cardStamp(nome, ruolo, immagine){
+function arrayStamp(){
+    teamContainer.innerHTML = ""
+
+    for( i = 0; i < utenti.length; i++){
+        const utenteSingolo = utenti[i]
+        console.log(utenteSingolo)
+        cardStamp(utenteSingolo)
+    }
+}
+
+
+function cardStamp(utenteSingolo){
+
+
     teamContainer.innerHTML += `
         <div class="team-card">
             <div class="card-image">
                 <img
-                    src="${immagine}"
-                    alt="${nome}"
+                    src="img/${utenteSingolo.image}"
+                    alt="${utenteSingolo.name}"
                 >
             </div>
             <div class="card-text">
-                <h3>${nome}</h3>
-                <p>${ruolo}</p>
+                <h3>${utenteSingolo.name}</h3>
+                <p>${utenteSingolo.role}</p>
             </div>
         </div>`
 }
